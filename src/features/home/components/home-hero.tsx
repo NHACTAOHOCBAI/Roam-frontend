@@ -1,22 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { brand } from "@/config/brand";
-
-const modules = [
-  [
-    "01",
-    "Khám phá địa phương",
-    "Bản đồ, bộ lọc và những địa điểm có chiều sâu hơn một chiếc ghim.",
-  ],
-  [
-    "02",
-    "Câu chuyện bản địa",
-    "Lịch sử, văn hoá và nguồn tham khảo đáng tin cậy ngay tại nơi bạn đến.",
-  ],
-  ["03", "Nhịp sống địa phương", "Lễ hội, workshop và những điều đang diễn ra quanh bạn."],
-  ["04", "Góc nhìn cộng đồng", "Đánh giá, hình ảnh và ghi chép từ những người đã thật sự đi."],
-  ["05", "Đi cùng nhau", "Tạo hoặc tham gia một hoạt động, rồi gặp người cùng sở thích."],
-] as const;
+import { ExplorerDemo } from "./explorer-demo";
 
 function Mark() {
   return (
@@ -33,7 +19,7 @@ export function HomeHero() {
   return (
     <main className="overflow-hidden bg-[#f4f7f4] text-teal-950">
       <section className="border-b border-teal-950/10 px-5 pt-7 pb-14 sm:px-8 lg:px-12 lg:pb-20">
-        <div className="mx-auto max-w-[1440px]">
+        <ScrollReveal className="mx-auto max-w-[1440px]">
           <nav aria-label="Điều hướng chính" className="flex items-center justify-between">
             <Link
               href="/"
@@ -43,9 +29,15 @@ export function HomeHero() {
               <span className="text-sm font-bold tracking-[0.18em] uppercase">{brand.name}</span>
             </Link>
             <div className="hidden items-center gap-7 text-sm font-medium text-teal-950/70 md:flex">
-              <a href="#kham-pha">Khám phá</a>
-              <a href="#tinh-nang">Tính năng</a>
-              <a href="#cong-dong">Cộng đồng</a>
+              <a className="nav-link" href="#kham-pha">
+                Khám phá
+              </a>
+              <a className="nav-link" href="#tinh-nang">
+                Tính năng
+              </a>
+              <a className="nav-link" href="#cong-dong">
+                Cộng đồng
+              </a>
             </div>
             <a
               href="#kham-pha"
@@ -61,7 +53,7 @@ export function HomeHero() {
                 <span className="h-px w-9 bg-teal-700" />
                 Khám phá Việt Nam theo cách riêng
               </p>
-              <h1 className="max-w-3xl font-[family-name:var(--font-editorial)] text-5xl leading-[.94] tracking-[-0.055em] sm:text-7xl lg:text-[clamp(4.8rem,8vw,8.6rem)]">
+              <h1 className="max-w-3xl font-[family-name:var(--font-display)] text-5xl leading-[.94] font-semibold tracking-[-0.055em] sm:text-7xl lg:text-[clamp(4.8rem,8vw,8.6rem)]">
                 Đi xa hơn <br />
                 một địa điểm.
               </h1>
@@ -70,13 +62,7 @@ export function HomeHero() {
                 Để mỗi lần đi, bạn hiểu thêm một vùng đất.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <a
-                  href="#kham-pha"
-                  className="group inline-flex items-center gap-3 rounded-full bg-teal-950 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-teal-800"
-                >
-                  Khám phá Việt Nam{" "}
-                  <span className="transition-transform group-hover:translate-y-0.5">↓</span>
-                </a>
+                <ExplorerDemo />
                 <a
                   href="#tinh-nang"
                   className="text-sm font-bold underline decoration-teal-950/30 underline-offset-6"
@@ -85,7 +71,7 @@ export function HomeHero() {
                 </a>
               </div>
             </div>
-            <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
+            <div className="group relative mx-auto w-full max-w-xl lg:max-w-none">
               <div className="absolute -inset-5 rotate-3 rounded-[2.5rem] bg-[#c5ddd8]" />
               <div className="relative aspect-[1.15/1] overflow-hidden rounded-[2.3rem] bg-teal-900">
                 <Image
@@ -94,7 +80,7 @@ export function HomeHero() {
                   fill
                   priority
                   sizes="(max-width: 1024px) 90vw, 48vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03] motion-reduce:transition-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-teal-950/45 via-transparent to-transparent" />
                 <div className="absolute right-5 bottom-5 left-5 flex items-end justify-between text-white">
@@ -105,22 +91,34 @@ export function HomeHero() {
                     Việt Nam
                   </span>
                 </div>
+                <div className="float-slow absolute -top-3 -left-3 rounded-2xl bg-white px-3 py-2.5 text-teal-950 shadow-xl">
+                  <p className="text-[9px] font-bold tracking-[0.12em] text-teal-700 uppercase">
+                    Đang có trên Roam
+                  </p>
+                  <p className="mt-1 text-xs font-bold">Chạm bản đồ · tìm trải nghiệm</p>
+                </div>
+                <div className="float-delayed absolute top-10 -right-3 rounded-2xl border border-white/60 bg-[#c7ef2d] px-3 py-2 text-xs font-bold text-teal-950 shadow-xl">
+                  ✦ Local pulse
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section
         id="kham-pha"
         className="scroll-mt-8 bg-[#dcebea] px-5 py-20 sm:px-8 lg:px-12 lg:py-28"
       >
-        <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+        <ScrollReveal
+          className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-center"
+          delay={80}
+        >
           <div>
             <p className="text-xs font-bold tracking-[0.18em] text-teal-700 uppercase">
               01 — Bản đồ là điểm bắt đầu
             </p>
-            <h2 className="mt-5 max-w-md font-[family-name:var(--font-editorial)] text-5xl leading-[.98] tracking-[-0.045em] sm:text-6xl">
+            <h2 className="mt-5 max-w-md font-[family-name:var(--font-display)] text-5xl leading-[.98] font-medium tracking-[-0.045em] sm:text-6xl">
               Mỗi tỉnh thành là một lời mời đi sâu hơn.
             </h2>
             <p className="mt-7 max-w-md leading-7 text-teal-950/70">
@@ -132,7 +130,7 @@ export function HomeHero() {
               liệu đáng tin cậy.
             </div>
           </div>
-          <div className="relative mx-auto flex aspect-[1.22/1] w-full max-w-2xl items-center justify-center overflow-hidden rounded-[2.5rem] border border-teal-950/10 bg-[#edf5f2]">
+          <div className="relative mx-auto flex aspect-[1.22/1] w-full max-w-2xl items-center justify-center overflow-hidden rounded-[2.5rem] border border-teal-950/10 bg-[#edf5f2] shadow-[0_24px_60px_-35px_rgba(9,70,68,.5)]">
             <div className="map-grid absolute inset-0 opacity-70" />
             <Image
               src="/vietnam-map.svg"
@@ -156,177 +154,254 @@ export function HomeHero() {
             <p className="absolute bottom-5 left-6 z-10 text-xs font-bold tracking-[0.14em] text-teal-950/50 uppercase">
               Toàn quốc — vô vàn lối đi
             </p>
+            <div className="absolute right-5 bottom-5 z-20 hidden w-44 rounded-2xl bg-white p-3 shadow-xl sm:block">
+              <p className="text-[9px] font-bold tracking-[0.12em] text-teal-700 uppercase">
+                Gợi ý hôm nay
+              </p>
+              <p className="mt-1.5 text-xs leading-5 font-bold">
+                Chọn một nơi, Roam mở cả hành trình.
+              </p>
+              <div className="mt-3 flex -space-x-2">
+                <span className="grid size-6 place-items-center rounded-full border-2 border-white bg-[#f2b99a] text-[8px]">
+                  M
+                </span>
+                <span className="grid size-6 place-items-center rounded-full border-2 border-white bg-[#8bc5c0] text-[8px]">
+                  L
+                </span>
+                <span className="grid size-6 place-items-center rounded-full border-2 border-white bg-[#e0c979] text-[8px]">
+                  +9
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section id="tinh-nang" className="scroll-mt-8 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="mx-auto max-w-[1440px]">
-          <div className="flex flex-col justify-between gap-6 border-b border-teal-950/15 pb-10 md:flex-row md:items-end">
-            <div>
-              <p className="text-xs font-bold tracking-[0.18em] text-teal-700 uppercase">
-                02 — Một chuyến đi có nhiều lớp
-              </p>
-              <h2 className="mt-5 font-[family-name:var(--font-editorial)] text-5xl leading-none tracking-[-0.045em] sm:text-6xl">
-                Tất cả những gì bạn cần
-                <br />
-                để trải nghiệm một nơi.
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm leading-6 text-teal-950/65">
-              Roam đưa các mảnh thông tin rời rạc về cùng một nhịp: khám phá, hiểu, kết nối và lên
-              đường.
+        <ScrollReveal className="mx-auto max-w-[1440px]" delay={80}>
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold tracking-[0.18em] text-teal-700 uppercase">
+              02 — Một chuyến đi có nhiều lớp
+            </p>
+            <h2 className="mt-5 font-[family-name:var(--font-display)] text-5xl leading-[.98] font-medium tracking-[-0.045em] sm:text-6xl">
+              Một nơi. Năm lớp trải nghiệm.
+            </h2>
+            <p className="mt-5 max-w-xl leading-7 text-teal-950/65">
+              Roam nối các điều thường nằm rời rạc thành một hành trình tự nhiên.
             </p>
           </div>
-          <div className="grid divide-y divide-teal-950/15 md:grid-cols-2 md:divide-x md:divide-y-0 lg:grid-cols-5 lg:divide-x">
-            {modules.map(([number, title, description]) => (
-              <article
-                key={number}
-                className="group py-8 pr-6 md:px-6 md:first:pl-0 lg:min-h-72 lg:px-5 lg:first:pl-0"
-              >
-                <p className="text-xs font-bold text-teal-600">{number}</p>
-                <h3 className="mt-14 text-lg leading-6 font-bold">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-teal-950/65">{description}</p>
-                <span className="mt-7 inline-block text-teal-700">↗</span>
-              </article>
-            ))}
+          <div className="relative mt-12 overflow-hidden rounded-[2rem] border border-teal-950/10 bg-[#e8f2ee] p-5 sm:p-8 lg:min-h-[32rem]">
+            <div className="absolute inset-x-14 top-1/2 hidden border-t border-dashed border-teal-950/25 lg:block" />
+            <p className="mb-3 text-xs font-bold text-teal-950/55 sm:hidden">Vuốt để xem thêm →</p>
+            <ol className="relative flex snap-x snap-mandatory [scrollbar-width:none] gap-4 overflow-x-auto pr-5 pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pr-0 sm:pb-0 lg:min-h-[calc(32rem-4rem)] lg:grid-cols-5 lg:items-center [&::-webkit-scrollbar]:hidden">
+              <li className="min-w-[15.5rem] snap-center rounded-2xl bg-white p-4 shadow-[0_14px_30px_-24px_rgba(9,70,68,.8)] transition-shadow duration-300 hover:shadow-[0_20px_35px_-22px_rgba(9,70,68,.45)] sm:min-w-0 lg:-translate-y-12">
+                <span className="text-[10px] font-bold tracking-[0.14em] text-teal-700 uppercase">
+                  01 · khám phá
+                </span>
+                <div className="mt-5 flex h-20 items-end gap-1 rounded-xl bg-[#d4ebe6] p-3">
+                  <span className="h-4 w-4 rounded-full bg-teal-700" />
+                  <span className="h-7 w-7 rounded-full bg-[#c7ef2d]" />
+                  <span className="h-5 w-5 rounded-full bg-teal-500" />
+                </div>
+                <p className="mt-3 text-sm font-bold">Chạm vào bản đồ</p>
+              </li>
+              <li className="min-w-[15.5rem] snap-center rounded-2xl border border-teal-950/10 bg-[#f9fbf8] p-4 transition-shadow duration-300 hover:shadow-[0_20px_35px_-22px_rgba(9,70,68,.3)] sm:min-w-0 lg:translate-y-7">
+                <span className="text-[10px] font-bold tracking-[0.14em] text-teal-700 uppercase">
+                  02 · câu chuyện
+                </span>
+                <p className="mt-5 border-l-2 border-[#c7ef2d] pl-3 text-sm leading-5 font-bold">
+                  Đọc một lát cắt của nơi bạn đến.
+                </p>
+                <div className="mt-4 h-1.5 w-3/4 rounded bg-teal-950/10" />
+                <div className="mt-2 h-1.5 w-1/2 rounded bg-teal-950/10" />
+              </li>
+              <li className="min-w-[15.5rem] snap-center rounded-2xl bg-teal-950 p-4 text-white shadow-[0_20px_35px_-22px_rgba(9,70,68,.9)] transition-shadow duration-300 hover:shadow-[0_24px_42px_-20px_rgba(9,70,68,.8)] sm:min-w-0 lg:-translate-y-5">
+                <span className="text-[10px] font-bold tracking-[0.14em] text-[#c7ef2d] uppercase">
+                  03 · cộng đồng
+                </span>
+                <div className="mt-5 flex items-center gap-2">
+                  <span className="grid size-8 place-items-center rounded-full bg-[#f2b99a] text-[10px] text-teal-950">
+                    MA
+                  </span>
+                  <div>
+                    <p className="text-xs font-bold">“Đáng để đi chậm.”</p>
+                    <p className="mt-1 text-[10px] text-white/60">Góc nhìn từ người đi trước</p>
+                  </div>
+                </div>
+              </li>
+              <li className="min-w-[15.5rem] snap-center rounded-2xl bg-[#c7ef2d] p-4 text-teal-950 transition-shadow duration-300 hover:shadow-[0_20px_35px_-22px_rgba(9,70,68,.35)] sm:min-w-0 lg:translate-y-11">
+                <span className="text-[10px] font-bold tracking-[0.14em] uppercase">
+                  04 · local pulse
+                </span>
+                <p className="mt-5 text-sm font-bold">Có gì đang diễn ra?</p>
+                <div className="mt-3 flex gap-2">
+                  <span className="rounded-lg bg-white/60 px-2 py-1 text-[10px] font-bold">T7</span>
+                  <span className="rounded-lg bg-white/60 px-2 py-1 text-[10px] font-bold">CN</span>
+                </div>
+              </li>
+              <li className="min-w-[15.5rem] snap-center rounded-2xl border border-teal-950/10 bg-white p-4 transition-shadow duration-300 hover:shadow-[0_20px_35px_-22px_rgba(9,70,68,.3)] sm:min-w-0 lg:-translate-y-7">
+                <span className="text-[10px] font-bold tracking-[0.14em] text-teal-700 uppercase">
+                  05 · cùng đi
+                </span>
+                <p className="mt-5 text-sm font-bold">Gặp đúng người đồng hành.</p>
+                <div className="mt-4 flex -space-x-2">
+                  <span className="size-7 rounded-full border-2 border-white bg-[#8bc5c0]" />
+                  <span className="size-7 rounded-full border-2 border-white bg-[#e0c979]" />
+                  <span className="grid size-7 place-items-center rounded-full border-2 border-white bg-teal-950 text-[9px] text-white">
+                    +6
+                  </span>
+                </div>
+              </li>
+            </ol>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
-      <section className="bg-teal-950 px-5 py-20 text-[#eff7f4] sm:px-8 lg:px-12 lg:py-28">
-        <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[1.15fr_.85fr]">
-          <div className="rounded-[2.2rem] bg-[#0c403f] p-7 sm:p-10">
-            <p className="text-xs font-bold tracking-[0.18em] text-teal-200 uppercase">
-              03 — Không chỉ nhìn, mà còn hiểu
-            </p>
-            <h2 className="mt-7 max-w-2xl font-[family-name:var(--font-editorial)] text-5xl leading-[.98] tracking-[-0.045em] sm:text-6xl">
-              Sau một địa điểm là một câu chuyện để mang về.
-            </h2>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2">
-              <article className="overflow-hidden rounded-2xl bg-[#17605d]">
-                <div className="relative aspect-[1.25/1]">
-                  <Image
-                    src="/images/culture-vietnam.jpg"
-                    alt="Cảnh thiên nhiên và kiến trúc ven nước"
-                    fill
-                    sizes="(max-width: 640px) 100vw, 40vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <p className="text-xs font-bold text-teal-200">CÂU CHUYỆN BẢN ĐỊA</p>
-                  <p className="mt-2 text-sm leading-6 text-white/75">
-                    Những lớp văn hoá gắn với chính nơi bạn đang đứng.
-                  </p>
-                </div>
-              </article>
-              <article className="overflow-hidden rounded-2xl bg-[#17605d]">
-                <div className="relative aspect-[1.25/1]">
-                  <Image
-                    src="/images/food-vietnam.jpg"
-                    alt="Cầu Vàng trong khung cảnh núi"
-                    fill
-                    sizes="(max-width: 640px) 100vw, 40vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <p className="text-xs font-bold text-teal-200">TRẢI NGHIỆM ĐỊA PHƯƠNG</p>
-                  <p className="mt-2 text-sm leading-6 text-white/75">
-                    Từ ẩm thực đến những điều chỉ người bản xứ mới kể.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-          <div className="flex flex-col justify-between rounded-[2.2rem] border border-white/15 p-7 sm:p-10">
+      <section className="border-y border-teal-950/10 bg-[#f8faf5] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <ScrollReveal className="mx-auto max-w-[1440px]" delay={80}>
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
-              <p className="text-xs font-bold tracking-[0.18em] text-teal-200 uppercase">
-                Nguồn, không phải lời đồn
+              <p className="text-xs font-bold tracking-[0.18em] text-teal-700 uppercase">
+                03 — Không chỉ nhìn, mà còn hiểu
               </p>
-              <p className="mt-7 text-2xl leading-9 text-white/85">
-                Nội dung văn hoá trên Roam được thiết kế để luôn đi cùng ngữ cảnh và nguồn tham
-                khảo.
+              <h2 className="mt-5 max-w-2xl font-[family-name:var(--font-display)] text-5xl leading-[.98] font-medium tracking-[-0.045em] sm:text-6xl">
+                Một nơi luôn có câu chuyện phía sau.
+              </h2>
+            </div>
+            <p className="max-w-xs text-sm leading-6 text-teal-950/65">
+              Reader view đưa ngữ cảnh và nguồn tham khảo về cùng một chỗ.
+            </p>
+          </div>
+          <article className="group mt-12 grid overflow-hidden rounded-[2rem] border border-teal-950/10 bg-white shadow-[0_24px_60px_-44px_rgba(9,70,68,.6)] lg:grid-cols-[10rem_1fr_18rem]">
+            <aside className="border-b border-teal-950/10 p-5 lg:border-r lg:border-b-0">
+              <p className="text-[10px] font-bold tracking-[0.14em] text-teal-700 uppercase">
+                Roam reader
+              </p>
+              <div className="mt-12 space-y-4 text-xs font-bold text-teal-950/45">
+                <p className="text-teal-950">Câu chuyện</p>
+                <p>Địa điểm</p>
+                <p>Ghi chú</p>
+              </div>
+              <div className="mt-16 rounded-xl bg-[#e8f2ee] p-3 text-[10px] leading-4 text-teal-950/65">
+                Tất cả nội dung được gắn với vị trí và nguồn tham khảo.
+              </div>
+            </aside>
+            <div className="p-5 sm:p-8">
+              <p className="text-[10px] font-bold tracking-[0.14em] text-teal-700 uppercase">
+                Câu chuyện minh hoạ · 6 phút đọc
+              </p>
+              <h3 className="mt-4 max-w-xl font-[family-name:var(--font-display)] text-4xl leading-[1.02] font-medium tracking-[-0.045em]">
+                Đi chậm để nghe một vùng đất kể chuyện.
+              </h3>
+              <div className="relative mt-7 aspect-[2.1/1] overflow-hidden rounded-xl">
+                <Image
+                  src="/images/culture-vietnam.jpg"
+                  alt="Cảnh quan và kiến trúc ven nước"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03] motion-reduce:transition-none"
+                />
+              </div>
+              <p className="mt-6 max-w-xl text-sm leading-7 text-teal-950/65">
+                Một lớp thông tin ngắn, một địa điểm trên bản đồ và những nguồn để người đọc tự đi
+                sâu hơn.
               </p>
             </div>
-            <a
-              href="https://vietnam.travel/vi/place-to-go/"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-12 inline-flex items-center justify-between border-t border-white/20 pt-5 text-sm font-bold hover:text-teal-200"
-            >
-              Tham khảo Cổng thông tin Du lịch Việt Nam <span>↗</span>
-            </a>
-          </div>
-        </div>
+            <aside className="border-t border-teal-950/10 bg-[#edf5f2] p-5 lg:border-t-0 lg:border-l">
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-bold tracking-[0.14em] text-teal-700 uppercase">
+                  Nguồn tham khảo
+                </p>
+                <span className="rounded-full bg-[#c7ef2d] px-2 py-1 text-[9px] font-bold">
+                  DEMO
+                </span>
+              </div>
+              <div className="mt-7 border-l-2 border-teal-700 pl-3">
+                <p className="text-xs font-bold">Cổng thông tin du lịch</p>
+                <p className="mt-1 text-[11px] leading-5 text-teal-950/60">
+                  Nguồn chính thức được hiển thị ngay bên cạnh nội dung.
+                </p>
+              </div>
+              <div className="mt-5 border-l-2 border-teal-950/20 pl-3">
+                <p className="text-xs font-bold">Tư liệu địa phương</p>
+                <p className="mt-1 text-[11px] leading-5 text-teal-950/60">
+                  Dùng để đối chiếu bối cảnh văn hoá.
+                </p>
+              </div>
+            </aside>
+          </article>
+        </ScrollReveal>
       </section>
 
       <section id="cong-dong" className="scroll-mt-8 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[.9fr_1.1fr]">
-          <div className="flex flex-col justify-between">
-            <div>
-              <p className="text-xs font-bold tracking-[0.18em] text-teal-700 uppercase">
-                04 — Có người cùng lên đường
-              </p>
-              <h2 className="mt-5 font-[family-name:var(--font-editorial)] text-5xl leading-[.98] tracking-[-0.045em] sm:text-6xl">
-                Một trải nghiệm hay hơn khi được chia sẻ.
-              </h2>
-              <p className="mt-7 max-w-md leading-7 text-teal-950/70">
-                Xem đánh giá của người đi trước, tìm hoạt động hợp gu, hoặc mở lời cho chuyến đi mà
-                bạn không muốn đi một mình.
+        <ScrollReveal className="mx-auto max-w-[1440px]" delay={80}>
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold tracking-[0.18em] text-teal-700 uppercase">
+              04 — Có người cùng lên đường
+            </p>
+            <h2 className="mt-5 font-[family-name:var(--font-display)] text-5xl leading-[.98] font-medium tracking-[-0.045em] sm:text-6xl">
+              Một cuộc hẹn, trước khi là một chuyến đi.
+            </h2>
+          </div>
+          <article className="group mt-12 grid overflow-hidden rounded-[2rem] bg-teal-950 text-white shadow-[0_24px_60px_-35px_rgba(9,70,68,.55)] lg:grid-cols-[.92fr_1.08fr]">
+            <div className="relative min-h-72 lg:min-h-full">
+              <Image
+                src="/images/culture-vietnam.jpg"
+                alt="Khung cảnh ven nước cho một buổi dạo chậm"
+                fill
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03] motion-reduce:transition-none"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-950/70 via-transparent to-transparent" />
+              <p className="absolute right-6 bottom-6 left-6 text-sm leading-6 text-white/90 sm:max-w-xs">
+                Những cuộc gặp nhỏ để biết một nơi từ người đang sống ở đó.
               </p>
             </div>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <article className="rounded-[2rem] bg-[#e7b873] p-7 text-[#3b2b15]">
-              <p className="text-xs font-bold tracking-[0.14em] uppercase">Local pulse</p>
-              <div className="mt-20">
-                <p className="text-4xl">✦</p>
-                <h3 className="mt-5 text-2xl font-bold tracking-tight">
-                  Đừng lỡ nhịp sống ở nơi bạn đến.
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-[#3b2b15]/75">
-                  Lễ hội, triển lãm, workshop và hoạt động cộng đồng — xem theo địa phương và thời
-                  gian.
-                </p>
-              </div>
-            </article>
-            <article className="rounded-[2rem] bg-[#c2ddd5] p-7">
-              <p className="text-xs font-bold tracking-[0.14em] text-teal-800 uppercase">
-                Community activities
+            <div className="flex flex-col p-7 sm:p-12">
+              <p className="text-xs font-bold tracking-[0.16em] text-[#c7ef2d] uppercase">
+                Cuối tuần này · Huế
               </p>
-              <div className="mt-20">
-                <p className="text-4xl">↗</p>
-                <h3 className="mt-5 text-2xl font-bold tracking-tight">Có hẹn, có hành trình.</h3>
-                <p className="mt-3 text-sm leading-6 text-teal-950/70">
-                  Tạo một hoạt động, ghi rõ thời gian và nơi chốn, rồi gặp người muốn đi cùng bạn.
-                </p>
+              <h3 className="mt-8 max-w-xl font-[family-name:var(--font-display)] text-4xl leading-[1.02] font-medium tracking-[-0.045em] sm:text-5xl">
+                Dạo bên sông Hương, nghe thành phố kể chuyện.
+              </h3>
+              <p className="mt-6 max-w-lg text-base leading-7 text-white/70">
+                Một buổi đi bộ chậm qua những con đường quen, với vài câu chuyện về nếp sống và ký
+                ức của Huế.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/15 pt-5 text-sm text-white/75">
+                <span>Thứ bảy · 16:30</span>
+                <span>90 phút</span>
+                <span>Nhóm tối đa 8 người</span>
               </div>
-            </article>
-          </div>
-        </div>
+              <a
+                href="#kham-pha"
+                className="mt-10 inline-flex w-fit items-center gap-3 border-b border-[#c7ef2d] pb-2 text-sm font-bold text-[#c7ef2d] transition hover:gap-5"
+              >
+                Xem các điểm hẹn khác <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        </ScrollReveal>
       </section>
 
       <section className="px-5 pb-5 sm:px-8 lg:px-12">
-        <div className="mx-auto max-w-[1440px] rounded-[2.5rem] bg-[#bce0df] px-7 py-16 sm:px-12 sm:py-20 lg:flex lg:items-end lg:justify-between">
+        <ScrollReveal
+          className="mx-auto flex max-w-[1440px] flex-col gap-8 border-t border-teal-950/15 py-14 sm:py-16 lg:flex-row lg:items-end lg:justify-between"
+          delay={80}
+        >
           <div>
-            <p className="text-xs font-bold tracking-[0.18em] text-teal-700 uppercase">
-              Roam — sắp ra mắt
-            </p>
-            <h2 className="mt-5 max-w-3xl font-[family-name:var(--font-editorial)] text-5xl leading-[.96] tracking-[-0.05em] sm:text-7xl">
-              Việt Nam rộng lắm.
-              <br />
-              Đi cho tới nơi.
+            <p className="text-xs font-bold tracking-[0.18em] text-teal-700 uppercase">Roam</p>
+            <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl leading-[1.02] font-medium tracking-[-0.045em] sm:text-5xl">
+              Bắt đầu bằng một nơi bạn đang tò mò.
             </h2>
           </div>
           <a
             href="#kham-pha"
-            className="mt-9 inline-flex rounded-full bg-teal-950 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-teal-800 lg:mt-0"
+            className="inline-flex w-fit items-center gap-3 border-b border-teal-950 pb-2 text-sm font-bold transition hover:gap-5"
           >
-            Xem bản đồ Việt Nam
+            Khám phá bản đồ Việt Nam <span aria-hidden="true">→</span>
           </a>
-        </div>
+        </ScrollReveal>
       </section>
     </main>
   );
