@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@theme inline {
+  --color-ink-950: #10251f;
+  --color-ink-200: #b8c7bb;
+  --color-ink-100: #d9e1d5;
+  --color-moss-600: #486a48;
+  --color-moss-500: #638662;
+  --color-moss-400: #8fae7b;
+  --color-moss-300: #bad19a;
+  --color-moss-200: #d7e8b7;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: Georgia, "Times New Roman", serif;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--color-ink-950);
+}
+body {
+  margin: 0;
+}
+
+.map-grid {
+  background-image:
+    linear-gradient(rgb(13 77 75 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(13 77 75 / 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.map-pin {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #0d4d4b;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.map-pin::before {
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 2px solid #f4f7f4;
+  border-radius: 9999px;
+  background: #15958e;
+  box-shadow: 0 0 0 4px rgb(21 149 142 / 0.16);
+  content: "";
+}
+.topographic-lines {
+  background-image:
+    radial-gradient(
+      ellipse 70% 50% at 9% 80%,
+      transparent 42%,
+      rgb(186 209 154 / 0.18) 43%,
+      transparent 44%
+    ),
+    radial-gradient(
+      ellipse 58% 38% at 18% 66%,
+      transparent 48%,
+      rgb(186 209 154 / 0.18) 49%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 78% 58% at 90% 12%,
+      transparent 45%,
+      rgb(186 209 154 / 0.15) 46%,
+      transparent 47%
+    );
+}
+@media (prefers-reduced-motion: no-preference) {
+  .topographic-lines {
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    to {
+      transform: scale(1.05) translate3d(1%, -1%, 0);
+    }
+  }
+}
